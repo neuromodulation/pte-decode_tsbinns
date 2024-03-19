@@ -1,0 +1,94 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.5,<4"]
+
+[project]
+authors = [
+  {name = "Richard M. Köhler"},
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+description = "an open-source software package for neural decoding. ."
+dynamic = ["version"]
+keywords = ["machine learning", "bci", "eeg", "ieeg"]
+license = {file = "LICENSE"}
+maintainers = [
+  {name = "Richard M. Köhler"},
+]
+name = "pte-decode"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.10"
+
+dependencies = [
+  "bayesian-optimization",
+  "catboost",
+  "imbalanced-learn",
+  "joblib",
+  "matplotlib",
+  "mne",
+  "mne-bids",
+  "numba",
+  "numpy",
+  "pandas",
+  "pip",
+  "pte",
+  "pte-stats",
+  "scikit-learn",
+  "scipy",
+  "statannotations",
+  "xgboost",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "isort",
+  "mypy",
+  "pylint",
+  "pytest",
+  "pytest-cov",
+]
+
+[project.urls]
+bugtracker = "https://github.com/richardkoehler/pte-decode/issues"
+changelog = "https://github.com/richardkoehler/pte-decode/blob/main/doc/CHANGELOG.md"
+repository = "https://github.com/richardkoehler/pte-decode"
+
+[tool.flit.module]
+name = "pte_decode"
+
+[tool.black]
+exclude = '''
+/(
+  __pycache__
+)/
+'''
+include = '''
+(
+    /tests
+  | /src/
+)
+'''
+line-length = 79
+target-version = ['py310']
+
+[tool.isort]
+line_length = 79
+profile = "black"
+py_version = 310
+src_paths = ["pte_decode"]
+
+[tool.mypy]
+python_version = "3.10"
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+  "numba",
+  "skimage",
+  "statsmodels.stats.multitest",
+]
